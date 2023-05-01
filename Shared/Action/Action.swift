@@ -12,9 +12,16 @@ enum Action {
 }
 
 enum LectureAction {
+    /// Database
     case fetchLectureList
+    /// Server
     case didReceiveLectureList(response: [LectureListAPIResponseItem])
+    /// Server
     case didReceiveError(_ error: Error)
+    /// Server
     case fetchLectureProgress(courseID: String)
+    /// Server
     case didReceiveLectureProgress(response: LectureProgressAPIResponse)
+    /// Database
+    case didReceiveLectureListFromDB(lectures: [Lecture])
 }

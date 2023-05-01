@@ -14,8 +14,12 @@ func lectureMiddleware() -> Middleware<AppState> {
         }
         switch action {
         case .fetchLectureList:
-            Task {
-                await dispatcher.services.lectureCloudService.fetchLectureList(dispatcher: dispatcher)
+            dispatcher.services.databaseService.select(dispatcher: dispatcher)
+        case let .didReceiveLectureListFromDB(lectures: lectures):
+            if lectures.isEmpty {
+                Task {
+                    await dispatcher.services.lectureCloudService.fetchLectureList(dispatcher: dispatcher)
+                }
             }
         case let .didReceiveLectureList(response: response):
             response.map { $0.id }.forEach { id in

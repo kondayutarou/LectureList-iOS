@@ -11,6 +11,7 @@ import SQLite3
 protocol DatabaseService {
     func insert(lecture: Lecture) -> Bool
     func update(progressResponse: LectureProgressAPIResponse) -> Bool
+    func select(dispatcher: Store<AppState>)
 }
 
 final class DatabaseServiceImpl: DatabaseService {
@@ -127,6 +128,46 @@ final class DatabaseServiceImpl: DatabaseService {
 
         sqlite3_finalize(statement)
         return true
+    }
+
+    func select(dispatcher: Store<AppState>) {
+        var lectures: [Lecture] = []
+        var selectStatement: OpaquePointer?
+        let selectSQL = """
+        SELECT DISTINCT * FROM lecture
+        """
+        if sqlite3_prepare_v2(db, selectSQL, -1, &selectStatement, nil) != SQLITE_OK {
+            print("db error: \(getDBErrorMessage(db))")
+            lectures = []
+        }
+        while sqlite3_step(selectStatement) == SQLITE_ROW {
+            let id = String(cString: sqlite3_column_text(selectStatement, 0))
+            let name = String(cString: sqlite3_column_text(selectStatement, 1))
+            let iconURL = String(cString: sqlite3_column_text(selectStatement, 2))
+            let numberOfTopics = Int(sqlite3_column_int(selectStatement, 3))
+            let teacherName = String(cString: sqlite3_column_text(selectStatement, 4))
+            let timeStamp = Int(sqlite3_column_int(selectStatement, 5))
+            var progress: Int?
+            if sqlite3_column_type(selectStatement, 6) == SQLITE_NULL {
+                progress = nil
+            } else {
+                progress = Int(sqlite3_column_int(selectStatement, 6))
+            }
+            lectures.append(
+                Lecture(
+                    id: id,
+                    name: name,
+                    iconURL: iconURL,
+                    numberOfTopics: numberOfTopics,
+                    teacherName: teacherName,
+                    timeStamp: timeStamp,
+                    progreess: progress
+                )
+            )
+        }
+
+        sqlite3_finalize(selectStatement)
+        dispatcher.dispatch(.lecture(.didReceiveLectureListFromDB(lectures: lectures)))
     }
 
     private func getDBErrorMessage(_ db: OpaquePointer?) -> String {

@@ -22,6 +22,8 @@ func lectureReducer(_ state: LectureState, action: LectureAction) -> LectureStat
         state.lectures = lectures
     case let .didReceiveError(error):
         state.error = error
+    case let .didReceiveLectureListFromDB(lectures: lectures):
+        state.lectures = lectures
     default:
         break
     }
