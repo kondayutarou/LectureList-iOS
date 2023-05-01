@@ -10,6 +10,7 @@ import SQLite3
 
 protocol DatabaseService {
     func insert(lecture: Lecture) -> Bool
+    func update(progressResponse: LectureProgressAPIResponse) -> Bool
 }
 
 final class DatabaseServiceImpl: DatabaseService {
@@ -91,6 +92,32 @@ final class DatabaseServiceImpl: DatabaseService {
         } else {
             sqlite3_bind_null(statement, 7)
         }
+
+        if sqlite3_step(statement) != SQLITE_DONE {
+            print("db error: \(getDBErrorMessage(db))")
+            sqlite3_finalize(statement)
+            return false
+        }
+
+        sqlite3_finalize(statement)
+        return true
+    }
+
+    func update(progressResponse: LectureProgressAPIResponse) -> Bool {
+        let updateSQL = """
+        UPDATE lecture
+        SET progress = ?
+        WHERE id = ?
+        """
+        var statement: OpaquePointer?
+
+        if sqlite3_prepare_v2(db, updateSQL, -1, &statement, nil) != SQLITE_OK {
+                print("db error: \(getDBErrorMessage(db))")
+                return false
+        }
+
+        sqlite3_bind_int(statement, 1, Int32(progressResponse.progress))
+        sqlite3_bind_text(statement, 2, progressResponse.courseID, -1, nil)
 
         if sqlite3_step(statement) != SQLITE_DONE {
             print("db error: \(getDBErrorMessage(db))")

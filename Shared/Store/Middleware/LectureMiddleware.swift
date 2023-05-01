@@ -28,6 +28,8 @@ func lectureMiddleware() -> Middleware<AppState> {
             Task {
                 await dispatcher.services.lectureCloudService.fetchLectureProgress(dispatcher: dispatcher, courseID: id)
             }
+        case let .didReceiveLectureProgress(response: response):
+            dispatcher.services.databaseService.update(progressResponse: response)
         default:
             break
         }
