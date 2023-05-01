@@ -20,6 +20,8 @@ func lectureReducer(_ state: LectureState, action: LectureAction) -> LectureStat
         lecture.progreess = response.progress
         lectures[index] = lecture
         state.lectures = lectures
+    case let .didReceiveError(error):
+        state.error = error
     default:
         break
     }

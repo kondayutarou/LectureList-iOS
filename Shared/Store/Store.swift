@@ -18,6 +18,7 @@ struct AppState: ReduxState {
 
 struct LectureState: ReduxState {
     var lectures: [Lecture] = []
+    var error: Error?
 }
 
 struct Services {

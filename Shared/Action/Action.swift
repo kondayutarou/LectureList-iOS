@@ -14,6 +14,7 @@ enum Action {
 enum LectureAction {
     case fetchLectureList
     case didReceiveLectureList(response: [LectureListAPIResponseItem])
+    case didReceiveError(_ error: Error)
     case fetchLectureProgress(courseID: String)
     case didReceiveLectureProgress(response: LectureProgressAPIResponse)
 }

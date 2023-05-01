@@ -23,6 +23,7 @@
 		4491097529FDF58300542F3D /* LectureListSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491094D29FDF58200542F3D /* LectureListSwiftApp.swift */; };
 		4491097729FDF58300542F3D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491094E29FDF58200542F3D /* ContentView.swift */; };
 		4491097929FDF58300542F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4491094F29FDF58300542F3D /* Assets.xcassets */; };
+		44A6FB2B29FF5674005FC0A7 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6FB2A29FF5674005FC0A7 /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		4491096129FDF58300542F3D /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4491096529FDF58300542F3D /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		4491096729FDF58300542F3D /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
+		44A6FB2A29FF5674005FC0A7 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				4491094E29FDF58200542F3D /* ContentView.swift */,
+				44A6FB2A29FF5674005FC0A7 /* ErrorView.swift */,
 				448D65C929FE819D0025FF45 /* LectureRow.swift */,
 			);
 			path = View;
@@ -296,6 +299,7 @@
 				448D65BA29FE395B0025FF45 /* LectureListAPIResponseItem.swift in Sources */,
 				448D65AF29FE19DE0025FF45 /* LectureReducer.swift in Sources */,
 				448D65B729FE367A0025FF45 /* Configuration.swift in Sources */,
+				44A6FB2B29FF5674005FC0A7 /* ErrorView.swift in Sources */,
 				448D65C429FE3F600025FF45 /* LectureCloudService.swift in Sources */,
 				448D65AB29FE176D0025FF45 /* AppReducer.swift in Sources */,
 			);

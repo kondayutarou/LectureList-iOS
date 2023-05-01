@@ -28,6 +28,7 @@ final class LectureCloudServiceImpl: LectureCloudService {
     
     func fetchLectureList(dispatcher: Store<AppState>) async {
         guard let url = URL(string: "\(baseURL)/api/courses") else {
+            dispatcher.dispatch(.lecture(.didReceiveError(APIError.invalidURL)))
             return
         }
         do {
@@ -38,6 +39,7 @@ final class LectureCloudServiceImpl: LectureCloudService {
             let decoded = try JSONDecoder().decode(LectureListAPIResponse.self, from: data)
             dispatcher.dispatch(.lecture(.didReceiveLectureList(response: decoded)))
         } catch {
+            dispatcher.dispatch(.lecture(.didReceiveError(error)))
         }
     }
     
