@@ -12,7 +12,7 @@ enum Action {
 }
 
 enum LectureAction {
-    /// Database
+    /// Server
     case fetchLectureList
     /// Server
     case didReceiveLectureList(response: [LectureListAPIResponseItem])

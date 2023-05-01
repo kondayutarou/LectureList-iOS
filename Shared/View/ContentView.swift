@@ -9,9 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var store: Store<AppState>
-    private var errorExists: Binding<Bool> {
+    private var showErrorView: Binding<Bool> {
         Binding.init {
-            store.state.lectureState.error != nil
+            store.state.lectureState.error != nil &&
+            store.state.lectureState.lectures.isEmpty
         } set: { _ in }
     }
 
@@ -22,7 +23,7 @@ struct ContentView: View {
                     destination: ErrorView()
                         .navigationBarHidden(true)
                         .navigationBarBackButtonHidden(true),
-                    isActive: errorExists
+                    isActive: showErrorView
                 ) {}
 
                 ScrollView {
