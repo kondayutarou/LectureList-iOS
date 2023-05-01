@@ -21,6 +21,9 @@ func lectureMiddleware() -> Middleware<AppState> {
             response.map { $0.id }.forEach { id in
                 dispatcher.dispatch(.lecture(.fetchLectureProgress(courseID: id)))
             }
+            response.forEach { lecture in
+                dispatcher.services.databaseService.insert(lecture: lecture.to())
+            }
         case let .fetchLectureProgress(id):
             Task {
                 await dispatcher.services.lectureCloudService.fetchLectureProgress(dispatcher: dispatcher, courseID: id)

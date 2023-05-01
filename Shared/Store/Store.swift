@@ -23,6 +23,7 @@ struct LectureState: ReduxState {
 
 struct Services {
     let lectureCloudService: LectureCloudService
+    let databaseService: DatabaseService
 }
 
 final class Store<StoreState: ReduxState>: ObservableObject {
@@ -41,7 +42,8 @@ final class Store<StoreState: ReduxState>: ObservableObject {
         self.state = state
         self.middlewares = middlewares
         self.services = Services(
-            lectureCloudService: LectureCloudServiceImpl(baseURL: environment.baseURL)
+            lectureCloudService: LectureCloudServiceImpl(baseURL: environment.baseURL),
+            databaseService: DatabaseServiceImpl()
         )
     }
     

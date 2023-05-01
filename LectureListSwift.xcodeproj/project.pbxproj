@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44881F9129FF6A180080BA49 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44881F9029FF6A180080BA49 /* DatabaseService.swift */; };
 		448D65A129FE02530025FF45 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448D65A029FE02530025FF45 /* Store.swift */; };
 		448D65A529FE030A0025FF45 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448D65A429FE030A0025FF45 /* Action.swift */; };
 		448D65AB29FE176D0025FF45 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448D65AA29FE176D0025FF45 /* AppReducer.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		44881F9029FF6A180080BA49 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		448D65A029FE02530025FF45 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		448D65A429FE030A0025FF45 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		448D65AA29FE176D0025FF45 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				448D65C329FE3F600025FF45 /* LectureCloudService.swift */,
+				44881F9029FF6A180080BA49 /* DatabaseService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				448D65CA29FE819D0025FF45 /* LectureRow.swift in Sources */,
 				4491097729FDF58300542F3D /* ContentView.swift in Sources */,
 				448D65AD29FE19D10025FF45 /* LectureMiddleware.swift in Sources */,
+				44881F9129FF6A180080BA49 /* DatabaseService.swift in Sources */,
 				448D65A529FE030A0025FF45 /* Action.swift in Sources */,
 				4491097529FDF58300542F3D /* LectureListSwiftApp.swift in Sources */,
 				448D65BA29FE395B0025FF45 /* LectureListAPIResponseItem.swift in Sources */,
